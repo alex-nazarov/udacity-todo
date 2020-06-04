@@ -3,7 +3,6 @@ service:
 
 plugins:
   - serverless-webpack
-  - serverless-iam-roles-per-function
   - serverless-reqvalidator-plugin
   - serverless-aws-documentation
 
@@ -31,6 +30,8 @@ provider:
         - dynamodb:Scan
         - dynamodb:PutItem
         - dynamodb:GetItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
     - Effect: Allow
       Action:
