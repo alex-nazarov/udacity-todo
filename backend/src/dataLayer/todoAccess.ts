@@ -78,6 +78,8 @@ export class ToDoAccess {
         item: TodoItem
     ): Promise<void> {
 
+        console.log("Update ToDo Item, set Done = " + item.done);
+
         await this.docClient.update(
             {
                 TableName: this.todoTable,

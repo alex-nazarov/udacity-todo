@@ -47,11 +47,14 @@ export async function getUploadUrl(todoId: string): Promise<string> {
 }
 
 export async function updateToDo(todoId: string, updateReq: UpdateTodoRequest): Promise<void> {
+    console.log("Execute business logic")
     const toDoItem = await todoAccess.getTodoItem(todoId);
-    toDoItem.done = updateReq.done;
-    toDoItem.dueDate = updateReq.dueDate;
     if(!toDoItem){
         throw Error('Item not found')
     }
+    console.log("ToDo Item discovered "+ toDoItem)
+    toDoItem.done = updateReq.done;
+    toDoItem.dueDate = updateReq.dueDate;
+    console.log("ToDo Item updated, save it "+ toDoItem)
     await todoAccess.updateToDoStatus(toDoItem)
 }

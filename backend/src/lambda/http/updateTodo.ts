@@ -9,7 +9,8 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     const todoId = event.pathParameters.todoId
     const updatedTodo: UpdateTodoRequest = JSON.parse(event.body)
     try {
-        updateToDo(todoId, updatedTodo)
+        console.log("Got update request for " + todoId + ";  " + updatedTodo)
+        await updateToDo(todoId, updatedTodo)
         return {
             statusCode: 200,
             headers: {
